@@ -1,1 +1,1 @@
-# PlayThat-Collab
+# PlayThat

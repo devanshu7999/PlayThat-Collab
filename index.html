@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayThat - Book Sports & Fun Activities</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+    /* Mobile menu styles */
+    .mobile-menu {
+            position: absolute;
+            left: 0;
+            right: 0;
+            background: white;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
+            opacity: 0;
+            visibility: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .mobile-menu.show {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hamburger menu animation */
+        .hamburger-line {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* Button hover effects */
+        .auth-button {
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .auth-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .auth-button:hover::before {
+            left: 0;
+        }
+     
+
+        html {
+            scroll-behavior: smooth;
+        }
+        
+/* Hero Section */
+.hero-section {
+            position: relative;
+            z-index: 10;
+            padding: 8rem 0;
+            display: flex;
+            align-items: center;
+            min-height: 85vh;
+            background: linear-gradient(135deg, #2563eb 0%, #4338ca 100%);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1.2fr 1fr;
+                align-items: center;
+            }
+        }
+
+        .hero-content {
+            color: white;
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            margin-bottom: 2rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            padding: 1rem 2rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 1.125rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .hero-btn-primary {
+            background: white;
+            color: #2563eb;
+            border: none;
+        }
+
+        .hero-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero-btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .hero-btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: white;
+        } 
+        
+        
+        
+        .hero-image {
+            position: relative;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-image {
+                display: block;
+            }
+        }
+
+        .hero-image-main {
+            width: 100%;
+            height: 500px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+
+        /*Why Choose US CSS*/
+            .features-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                flex-wrap: wrap;
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 1rem;
+            }
+    
+            .feature-card {
+                width: 300px;
+                height: 300px;
+                padding: 2rem;
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                background: rgba(255, 255, 255, 0.9);
+                border-radius: 20px;
+                position: relative;
+                overflow: hidden;
+                border: 2px solid rgba(59, 130, 246, 0.1);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+            }
+    
+            .feature-card::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(45deg, #3B82F6, #2563EB, #1D4ED8, #3B82F6);
+                background-size: 400% 400%;
+                z-index: 0;
+                opacity: 0;
+                transition: opacity 0.5s ease;
+            }
+    
+            .feature-card:hover::before {
+                opacity: 1;
+            }
+    
+            .feature-card > * {
+                position: relative;
+                z-index: 1;
+                transition: all 0.3s ease;
+            }
+    
+            .feature-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            }
+    
+            .feature-card:hover h3
+            {
+                color:beige;
+            }
+
+            .feature-card:hover p {
+                color: gainsboro;
+            }
+    
+            .feature-icon {
+                width: 70px;
+                height: 70px;
+                background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 100%);
+                border-radius: 20px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 1.5rem;
+                transition: all 0.3s ease;
+            }
+    
+            .feature-card:hover .feature-icon {
+                background: rgba(255, 255, 255, 0.2);
+            }
+    
+            .feature-card:hover .feature-icon svg {
+                color: white;
+            }
+    
+            @keyframes gradientBorder {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+    
+            @media (max-width: 1024px) {
+                .features-container {
+                    gap: 1rem;
+                }
+                .feature-card {
+                    width: 280px;
+                    height: 280px;
+                }
+            }
+    
+            @media (max-width: 768px) {
+                .features-container {
+                    flex-direction: column;
+                }
+                .feature-card {
+                    width: 100%;
+                    max-width: 300px;
+                }
+            }
+
+
+        
+
+        /*Book Your Activity CSS Starts Here*/
+        .the{
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f5f5f5;
+            /*min-height: 50vh;*/
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            /*margin: 0;
+            padding: 0;
+            box-sizing: border-box;*/
+        }
+
+        .the-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            /*padding-left: 160px; */ 
+                      
+        }
+
+
+        .search-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .search-box {
+            /*background: white;*/
+            background: rgba(255, 255, 255, 0.9);
+            padding: 16px;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-box.active {
+            border-color: #4169e1;
+        }
+
+        .search-box-content {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .icon {
+            width: 30px;
+            height: 30px;
+            fill:  #4169e1;
+        }
+
+        .input-group {
+            flex: 1;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            color:  #4169e1;
+        }
+
+        .input-group input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 20px;
+            color: #666;
+            padding: 4px 0;
+        }
+
+        .input-group input::placeholder {
+            color: #999;
+        }
+
+
+        .search-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  font-size: 22px;
+  color: white;
+  background-color: #2563eb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.search-button:hover {
+  background-color: #1d4ed8;
+}
+
+.search-icon {
+  width: 16px;
+  height: 16px;
+  color: currentColor;
+}
+
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            margin-top: 8px;
+            display: none;
+            z-index: 1000;
+        }
+
+        .dropdown.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f5f5f5;
+        }
+
+        .error {
+            color: #dc3545;
+            font-size: 12px;
+            margin-top: 4px;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .search-container {
+                grid-template-columns: 1fr;
+            }
+            
+        }
+
+        /*Book Your Activity CSS Ends Here*/
+
+
+
+/* Ready to Play Section */
+.cta {
+        background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+        color: white;
+        padding: 8rem 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('/api/placeholder/1920/1080') center/cover;
+        opacity: 0.1;
+        z-index: 1;
+    }
+
+    .cta .my-container {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 25px;
+    }
+
+    .cta h2 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta p {
+        font-size: 1.25rem;
+        max-width: 600px;
+        margin: 0 auto 3rem;
+        line-height: 1.7;
+    }
+
+    .cta-button {
+        display: inline-flex;
+        align-items: center;
+        padding: 1.25rem 3rem;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #2563eb;
+        background: white;
+        border: none;
+        border-radius: 9999px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+        background: #f8fafc;
+    }
+
+    .cta-button:active {
+        transform: translateY(0);
+    }
+
+    .cta-button::after {
+        content: '→';
+        margin-left: 1rem;
+        transition: transform 0.3s ease;
+    }
+
+    .cta-button:hover::after {
+        transform: translateX(5px);
+    }
+
+    .cta-circles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        overflow: hidden;
+    }
+
+    .cta-circle {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .cta-circle:nth-child(1) {
+        width: 300px;
+        height: 300px;
+        top: -150px;
+        left: -150px;
+    }
+
+    .cta-circle:nth-child(2) {
+        width: 200px;
+        height: 200px;
+        bottom: -100px;
+        right: -100px;
+    }
+
+
+/*Contact Us Section*/
+.contact-us {
+    background: #f0f4f8;
+    font-family: 'Segoe UI', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.page-container {
+    max-width: 1100px;
+    margin: 40px auto;
+    display: flex;
+    gap: 40px;
+    padding: 30px;
+    flex-wrap: wrap;
+}
+
+.f-container {
+    flex: 1;
+    min-width: 380px;
+    padding: 35px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.f-container:hover {
+    transform: translateY(-5px);
+}
+
+.business-card {
+    flex: 1;
+    min-width: 380px;
+    padding: 40px;
+    background: linear-gradient(135deg, #2563eb 0%, #4338ca 100%);
+    border-radius: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-shadow: 0 15px 35px rgba(30, 60, 114, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.business-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+    z-index: 1;
+}
+
+.business-card h2 {
+    font-size: 32px;
+    margin-bottom: 25px;
+    font-weight: 700;
+    position: relative;
+    z-index: 2;
+}
+
+.business-card p {
+    font-size: 17px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+    opacity: 0.95;
+    position: relative;
+    z-index: 2;
+}
+
+.business-button {
+    background: rgba(255, 255, 255, 0.9);
+    color: #1e3c72;
+    padding: 16px 32px;
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+    font-weight: 600;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.business-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    background: white;
+}
+
+.form-title {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #1e3c72;
+    font-weight: 700;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-label {
+    display: block;
+    text-transform: uppercase;
+    color: #2a5298;
+    font-size: 13px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    color: #2d3748;
+    background: #f8fafc;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #1e3c72;
+    background: white;
+    box-shadow: 0 0 0 4px rgba(30, 60, 114, 0.1);
+}
+
+textarea.form-input {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.send-button {
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #2563eb 0%, #4338ca 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.send-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(42, 82, 152, 0.2);
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        padding: 20px;
+        gap: 30px;
+    }
+    
+    .f-container, .business-card {
+        min-width: 100%;
+        padding: 25px;
+    }
+}
+    </style>
+</head>
+<body class="font-sans" id="home">
+    <!-- Navbar Section Starts Here-->
+    <header class="bg-white shadow-md fixed w-full top-0 z-50">
+        <nav class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold text-blue-600">PlayThat</div>
+                
+                <!-- Hamburger Menu Button -->
+                <button class="hamburger md:hidden flex flex-col justify-center items-center w-6 h-6" onclick="toggleMenu()">
+                    <span class="hamburger-line w-full h-0.5 bg-gray-600 mb-1.5 rounded-full"></span>
+                    <span class="hamburger-line w-full h-0.5 bg-gray-600 mb-1.5 rounded-full"></span>
+                    <span class="hamburger-line w-full h-0.5 bg-gray-600 rounded-full"></span>
+                </button>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="hover:text-blue-600">Home</a>
+                    <a href="#about" class="hover:text-blue-600">About</a>
+                    <a href="#booking" class="hover:text-blue-600">Booking</a>
+                    <a href="#contact" class="hover:text-blue-600">Contact</a>
+                </div>
+
+                <!-- Desktop Buttons -->
+                <div class="hidden md:flex space-x-4">
+                    <button class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors">Get the App</button>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Login</button>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Logout</button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="mobile-menu md:hidden">
+                <div class="flex flex-col mt-4 space-y-4 pb-6 px-4">
+                    <a href="#home" class="hover:text-blue-600 py-2 border-b border-gray-100">Home</a>
+                    <a href="#about" class="hover:text-blue-600 py-2 border-b border-gray-100">About</a>
+                    <a href="#booking" class="hover:text-blue-600 py-2 border-b border-gray-100">Booking</a>
+                    <a href="#contact" class="hover:text-blue-600 py-2 border-b border-gray-100">Contact</a>
+                    
+                    <!-- Styled Get the App Button -->
+                    <button class="bg-green-500 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:bg-green-600 transform hover:-translate-y-0.5 transition-all duration-200">
+                        Get the App
+                    </button>
+                    
+                    <!-- Authentication Buttons Container -->
+                    <div class="grid grid-cols-2 gap-4 mt-4">
+                        <button class="auth-button bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:from-blue-700 hover:to-blue-800 transform hover:-translate-y-0.5 transition-all duration-200">
+                            Login
+                        </button>
+                        <button class="auth-button bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-xl font-semibold shadow-lg hover:from-indigo-700 hover:to-indigo-800 transform hover:-translate-y-0.5 transition-all duration-200">
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <script>
+        function toggleMenu() {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            mobileMenu.classList.toggle('show');
+            hamburger.classList.toggle('active');
+        }
+    </script>
+    <!-- Navbar Section Ends Here-->
+
+ 
+    <!-- Hero Section Starts Here -->    
+    <section class="hero-section">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="lucide-zap"></i> New Features Available
+                </div>
+                <h1 class="hero-title">Play Anytime, Anywhere with PlayThat</h1>
+                <p class="hero-description">
+                    Book sports facilities and activities instantly. Join thousands of players making the most of their free time with our seamless booking platform.
+                </p>
+                <div class="hero-buttons">
+                    <button class="hero-btn hero-btn-primary">
+                        Book Now
+                        <i class="lucide-arrow-right"></i>
+                    </button>
+                    <button class="hero-btn hero-btn-secondary">
+                        Learn More
+                        <i class="lucide-chevron-right"></i>
+                    </button>
+                </div>
+                </div>
+                <div class="hero-image">
+                    <div class="hero-image-main">
+                        <img src="images/" alt="Hero Image" >
+                    </div>
+                </div>
+                </div>
+                </section>
+    <!--Hero Section Ends Here-->
+
+
+    <!-- About Us Section Starts Here-->
+<section id="about" class="py-20 bg-gradient-to-b from-blue-50 to-white relative overflow-hidden">
+    <div class="container mx-auto px-6">
+        <!-- Decorative Elements -->
+        <div class="absolute top-0 left-0 w-32 h-32 bg-blue-100 rounded-full opacity-50 animate-pulse"></div>
+        <div class="absolute bottom-0 right-0 w-40 h-40 bg-blue-200 rounded-full opacity-30 animate-bounce"></div>
+
+        <h2 class="text-4xl md:text-4xl font-bold text-center text-blue-600 mb-10 relative z-10">
+            About Us
+        </h2>
+        <div class="flex flex-col md:flex-row items-center md:items-start justify-between space-y-10 md:space-y-0 md:space-x-12 relative z-10">
+            <!-- Left: Image or Illustration -->
+            <div class="w-full md:w-1/2 flex justify-center md:justify-end">
+                <img src="images/c-stadium.jpg" alt="About Us" 
+                     class="w-full max-w-md rounded-xl shadow-lg transform hover:scale-105 transition duration-500">
+            </div>
+            <!-- Right: Content -->
+            <div class="w-full md:w-1/2 space-y-6 text-center md:text-left">
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+                    At <span class="font-bold text-blue-600">PlayThat</span>, we redefine the way you plan your leisure activities. Whether it’s booking your favorite sport or discovering fun activities, we’re here to make it effortless and enjoyable.
+                </p>
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+                    Our platform brings you a wide range of options, ensuring there’s always something exciting to look forward to. From quick reservations to personalized time slots, PlayThat has it all.
+                </p>
+                <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
+                    Join us today to experience the joy of hassle-free booking, tailored just for you.
+                </p>
+                <a href="#contact" 
+                   class="inline-block bg-blue-600 text-white px-8 py-3 rounded-full shadow-lg hover:bg-blue-500 transform hover:scale-105 transition duration-300">
+                    Book Now
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- About Us Section Ends Here-->
+
+
+    <!-- Why Choose Us Section Starts Here-->
+        <section class="py-20 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden">
+            <!-- Decorative Elements -->
+        <div class="absolute top-0 right-0 w-32 h-32 bg-blue-100 rounded-full opacity-50 animate-pulse"></div>
+        <div class="absolute bottom-0 left-0 w-40 h-40 bg-blue-200 rounded-full opacity-30 animate-bounce"></div>
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-16 text-blue-600">Why Choose Us</h2>            
+            <div class="features-container">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Convenient Booking</h3>
+                    <p class="text-gray-600 text-sm">Quickly book your preferred sport or fun activity for a specific time slot without any hassle.</p>
+                </div>
+    
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Time-Specific Reservations</h3>
+                    <p class="text-gray-600 text-sm">Ensure your spot for a specific time slot in your favorite sports and fun activities.</p>
+                </div>
+    
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">Diverse Activity Options</h3>
+                    <p class="text-gray-600 text-sm">Choose from a wide range of sports and fun activities to book for a specific time slot.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Why Choose Us Section Ends Here-->
+
+
+    <!-- Booking Section Search Starts Here-->
+    <section id="booking" class="the">
+        <div class="the-container">
+            <h2 class="text-4xl font-bold text-center mb-8 text-blue-600">Book Your Activity</h2>
+            <div class="search-container">
+                <div class="search-box" id="locationBox">
+                    <div class="search-box-content">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                        </svg>
+                        <div class="input-group">
+                            <label>Location</label>
+                            <input type="text" id="location" placeholder="Add place">
+                            <div class="error">Please enter a valid location</div>
+                        </div>
+                        <div class="dropdown" id="locationDropdown">
+                            <div class="dropdown-item">Ahmedabad, GJ</div>
+                            <div class="dropdown-item">Gandhinagar, GJ</div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="search-box" id="personsBox">
+                    <div class="search-box-content">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/>
+                        </svg>
+                        <div class="input-group">
+                            <label>Persons</label>
+                            <input type="text" id="persons" placeholder="Add persons" readonly>
+                            <div class="error">Please select number of persons</div>
+                        </div>
+                        <div class="dropdown" id="personsDropdown">
+                            <div class="dropdown-item">1 Person</div>
+                            <div class="dropdown-item">2 Persons</div>
+                            <div class="dropdown-item">3 Persons</div>
+                            <div class="dropdown-item">4+ Persons</div>
+                        </div>
+                    </div>
+                </div>
+                
+    
+                <div class="search-box" id="checkInBox">
+                    <div class="search-box-content">
+                        <svg class="icon" viewBox="0 0 24 24">
+                            <path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 6v2h14V6H5zm2 4h10v2H7v-2z"/>
+                        </svg>
+                        <div class="input-group">
+                            <label>Date</label>
+                            <input type="date" id="checkIn" placeholder="Add date">
+                            <div class="error">Please select a date</div>
+                        </div>
+                    </div>
+                </div>
+
+                    <a class="search-button" href="booking.html">
+                        <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="11" cy="11" r="8"></circle>
+                          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        Search
+                    </a>
+                      
+                </div>
+            </div>
+    
+            
+        </div>
+    
+        <script>
+            
+    
+            // Location Dropdown
+            const locationInput = document.getElementById('location');
+            const locationDropdown = document.getElementById('locationDropdown');
+            const locationBox = document.getElementById('locationBox');
+    
+            locationInput.addEventListener('focus', () => {
+                locationBox.classList.add('active');
+                locationDropdown.classList.add('show');
+            });
+    
+            locationDropdown.addEventListener('click', (e) => {
+                if (e.target.classList.contains('dropdown-item')) {
+                    locationInput.value = e.target.textContent;
+                    locationDropdown.classList.remove('show');
+                    locationBox.classList.remove('active');
+                }
+            });
+    
+            // Persons Dropdown
+    const personsInput = document.getElementById('persons');
+    const personsDropdown = document.getElementById('personsDropdown');
+    const personsBox = document.getElementById('personsBox');
+    
+    personsInput.addEventListener('click', () => {
+        personsBox.classList.add('active');
+        personsDropdown.classList.add('show');
+    });
+    
+    personsDropdown.addEventListener('click', (e) => {
+        if (e.target.classList.contains('dropdown-item')) {
+            personsInput.value = e.target.textContent;
+            personsDropdown.classList.remove('show');
+            personsBox.classList.remove('active');
+        }
+    });
+    
+    
+            // Date Validation
+            const checkInInput = document.getElementById('checkIn');
+            const checkOutInput = document.getElementById('checkOut');
+    
+            checkInInput.addEventListener('change', () => {
+                const checkInDate = new Date(checkInInput.value);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+    
+                if (checkInDate < today) {
+                    checkInInput.parentElement.querySelector('.error').style.display = 'block';
+                    checkInInput.value = '';
+                } else {
+                    checkInInput.parentElement.querySelector('.error').style.display = 'none';
+                    checkOutInput.min = checkInInput.value;
+                }
+            });
+    
+            checkOutInput.addEventListener('change', () => {
+                const checkInDate = new Date(checkInInput.value);
+                const checkOutDate = new Date(checkOutInput.value);
+    
+                if (checkOutDate <= checkInDate) {
+                    checkOutInput.parentElement.querySelector('.error').style.display = 'block';
+                    checkOutInput.value = '';
+                } else {
+                    checkOutInput.parentElement.querySelector('.error').style.display = 'none';
+                }
+            });
+    
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#locationBox')) {
+                    locationDropdown.classList.remove('show');
+                    locationBox.classList.remove('active');
+                }
+                if (!e.target.closest('#personsBox')) {
+                    personsDropdown.classList.remove('show');
+                    personsBox.classList.remove('active');
+                }
+            });
+    
+            // Form Validation and Submit
+            const searchButton = document.getElementById('searchButton');
+            searchButton.addEventListener('click', () => {
+                let isValid = true;
+                const errorMessages = document.querySelectorAll('.error');
+                errorMessages.forEach(error => error.style.display = 'none');
+    
+                if (!locationInput.value) {
+                    locationInput.parentElement.querySelector('.error').style.display = 'block';
+                    isValid = false;
+                }
+    
+                if (!personsInput.value) {
+                    personsInput.parentElement.querySelector('.error').style.display = 'block';
+                    isValid = false;
+                }
+    
+                if (!checkInInput.value) {
+                    checkInInput.parentElement.querySelector('.error').style.display = 'block';
+                    isValid = false;
+                }
+    
+                if (!checkOutInput.value) {
+                    checkOutInput.parentElement.querySelector('.error').style.display = 'block';
+                    isValid = false;
+                }
+    
+                if (isValid) {
+                    const searchData = {
+                        cabinClass: cabinClass.querySelector('.active').textContent,
+                        location: locationInput.value,
+                        persons: personsInput.value,
+                        checkIn: checkInInput.value,
+                        checkOut: checkOutInput.value
+                    };
+                    console.log('Search Data:', searchData);
+                    // Here you would typically send the data to a server
+                    alert('Search submitted successfully!');
+                }
+            });
+        </script>
+    </section>
+<!-- Booking Section Search Starts Here-->
+
+
+<!-- Activity Section Starts Here -->
+<section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center mb-8 text-blue-600">Activities</h2>
+        <!--<div class="max-w-2xl mx-auto mb-8">
+            <input type="search" placeholder="Search Activity" class="w-full p-4 border rounded-lg">
+        </div>-->
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Sample Activity Cards -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="images/tennis.jpg" alt="Activity" class="w-full">
+                <div class="p-4">
+                    <h3 class="font-bold mb-2">Tennis Court</h3>
+                    <p class="text-gray-600 mb-4">Professional tennis court with equipment rental available</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Starting at <span class="font-bold">₹850/hr</span> </span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sample Activity Cards -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="images/football.jpg" alt="Activity" class="w-full">
+                <div class="p-4">
+                    <h3 class="font-bold mb-2">Football Court</h3>
+                    <p class="text-gray-600 mb-4">Professional football court with equipment rental available</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Starting at <span class="font-bold">₹1700/hr</span></span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Sample Activity Cards -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="images/basketball.jpg" alt="Activity" class="w-full">
+                <div class="p-4">
+                    <h3 class="font-bold mb-2">Basketball Court</h3>
+                    <p class="text-gray-600 mb-4">Professional tennis court with equipment rental available</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Starting at <span class="font-bold">₹1500/hr</span></span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Sample Activity Cards -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="images/cricket.jpg" alt="Activity" class="w-full">
+                <div class="p-4">
+                    <h3 class="font-bold mb-2">Box Cricket</h3>
+                    <p class="text-gray-600 mb-4">Box Cricket court with equipment rental available</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Starting at <span class="font-bold">₹1000/hr</span> </span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Sample Activity Cards -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <img src="images/volleyball.jpg" alt="Activity" class="w-full">
+                <div class="p-4">
+                    <h3 class="font-bold mb-2">Volleyball Court</h3>
+                    <p class="text-gray-600 mb-4">Volleyball court with equipment rental available</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-gray-600">Starting at <span class="font-bold">₹500/hr</span></span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded">Book Now</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Sample Activity Cards -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden relative min-h-[200px] md:min-h-[300px]">
+                <!-- Circular Button -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <a href="#activities" 
+                       class="w-36 h-36 bg-gradient-to-r from-blue-500 to-green-500 text-white flex items-center justify-center rounded-full shadow-lg transform hover:scale-105 transition duration-300">
+                        <span class="font-bold text-sm text-center leading-tight">Explore<br>More</span>
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+<!-- Activity Section Ends Here -->
+
+
+    <!--Ready to Play Section Starts Here-->
+    <section class="cta">
+        <div class="cta-circles">
+            <div class="cta-circle"></div>
+            <div class="cta-circle"></div>
+        </div>
+        <div class="my-container">
+            <h2>Ready to Play?</h2>
+            <p>Join thousands of sports enthusiasts who are already using PlayThat to make their sporting life easier and more enjoyable. Start your journey today!</p>
+            <button class="cta-button">Get Started Now</button>
+        </div>
+    </section>
+    <!--Ready to Play Section Ends Here-->
+
+
+    <!-- Contact Us Section Starts Here-->
+    <section id="contact" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold text-center  text-blue-600">Contact Us</h2>
+            <div class="contact-us ">    
+                <div class="page-container">
+                    <div class="business-card">
+                        <h2>List your business with us</h2>
+                        <p>Join thousands of successful businesses in our directory. Boost your visibility, connect with new customers, and grow your business exponentially.</p>
+                        <div class="flex justify-center mt-3"><button class="business-button">List Now →</button></div>
+                    </div>
+                
+                    <div class="f-container">
+                        <h1 class="form-title">Get in Touch</h1>
+                        <form>
+                            <div class="form-group">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-input" placeholder="Enter your full name">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-input" placeholder="Enter your email id">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Phone </label>
+                                <input type="tel" class="form-input" placeholder="Enter your phone no.">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">Message</label>
+                                <textarea class="form-input" placeholder="..."></textarea>
+                            </div>
+                            
+                            <button type="submit" class="send-button">Send Inquiry</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+    <!-- Contact Us Section Ends Here-->
+
+
+    <!-- Footer Section Starts Here-->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Reach Us</h3>
+                    <ul class="space-y-2">
+                        <li>Phone:<a href="#" class="hover:text-blue-400">  +91-XXXXX-XXXXX </a></li>
+                        <li>Email:<a href="#" class="hover:text-blue-400"> contact@playthat.in</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Legal</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-400">Terms & Conditions</a></li>
+                        <li><a href="#" class="hover:text-blue-400">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Blog</h3>
+                    <a href="#" class="hover:text-blue-400">Tips on fitness, sports, and using PlayThat effectively.</a>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="hover:text-blue-400">LinkedIn</a>
+                        <a href="#" class="hover:text-blue-400">Instagram</a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-8 border-t border-gray-700 text-center">
+                <p>Copyright © 2025 CCI. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section Ends Here-->
+</body>
+</html>
